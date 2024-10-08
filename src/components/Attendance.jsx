@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Typography, Container, Table, TableHead, TableRow, TableCell, TableBody, IconButton } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete'; // Import delete icon from MUI
+import DeleteIcon from '@mui/icons-material/Delete';
 import { collection, addDoc, getDocs, deleteDoc, doc, query, where } from 'firebase/firestore';
-import { db, auth } from './firebase'; // Firebase config
+import { db, auth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-import dayjs from 'dayjs'; // Import dayjs for date formatting
-import '@fontsource/poppins'; // Poppins font
+import dayjs from 'dayjs';
+import '@fontsource/poppins';
 
 const Attendance = () => {
   const [user, setUser] = useState(null);
@@ -30,12 +30,13 @@ const Attendance = () => {
   // Function to mark attendance
   const markAttendance = async () => {
     if (user) {
-      const attendanceDate = dayjs().format('YYYY-MM-DD'); // Use dayjs for date
+      const attendanceDate = dayjs().format('YYYY-MM-DD');
       try {
         await addDoc(collection(db, 'attendance'), {
           userId: user.uid,
+          userName: user.displayName || user.email, // Store display name or email
           date: attendanceDate,
-          timestamp: new Date()
+          timestamp: new Date(),
         });
         fetchAttendance(user.uid);
       } catch (error) {
@@ -47,12 +48,13 @@ const Attendance = () => {
   // Function to mark leave
   const markLeave = async () => {
     if (user) {
-      const leaveDate = dayjs().format('YYYY-MM-DD'); // Use dayjs for date
+      const leaveDate = dayjs().format('YYYY-MM-DD');
       try {
         await addDoc(collection(db, 'leaves'), {
           userId: user.uid,
+          userName: user.displayName || user.email, // Store display name or email
           date: leaveDate,
-          timestamp: new Date()
+          timestamp: new Date(),
         });
         fetchLeaves(user.uid);
       } catch (error) {
@@ -81,7 +83,7 @@ const Attendance = () => {
   const deleteAttendance = async (id) => {
     try {
       await deleteDoc(doc(db, 'attendance', id));
-      fetchAttendance(user.uid); // Refresh attendance records
+      fetchAttendance(user.uid);
     } catch (error) {
       console.error('Error deleting attendance:', error);
     }
@@ -91,7 +93,7 @@ const Attendance = () => {
   const deleteLeave = async (id) => {
     try {
       await deleteDoc(doc(db, 'leaves', id));
-      fetchLeaves(user.uid); // Refresh leave records
+      fetchLeaves(user.uid);
     } catch (error) {
       console.error('Error deleting leave:', error);
     }
@@ -123,14 +125,16 @@ const Attendance = () => {
       <Table>
         <TableHead>
           <TableRow>
+            <TableCell>User</TableCell>
             <TableCell>Date</TableCell>
             <TableCell>Timestamp</TableCell>
             <TableCell>Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {attendanceRecords.map((record, index) => (
-            <TableRow key={index}>
+          {attendanceRecords.map((record) => (
+            <TableRow key={record.id}>
+              <TableCell>{record.userName}</TableCell>
               <TableCell>{record.date}</TableCell>
               <TableCell>{dayjs(record.timestamp.toDate()).format('MMMM D, YYYY, h:mm A')}</TableCell>
               <TableCell>
@@ -148,14 +152,16 @@ const Attendance = () => {
       <Table>
         <TableHead>
           <TableRow>
+            <TableCell>User</TableCell>
             <TableCell>Date</TableCell>
             <TableCell>Timestamp</TableCell>
             <TableCell>Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {leaveRecords.map((record, index) => (
-            <TableRow key={index}>
+          {leaveRecords.map((record) => (
+            <TableRow key={record.id}>
+              <TableCell>{record.userName}</TableCell>
               <TableCell>{record.date}</TableCell>
               <TableCell>{dayjs(record.timestamp.toDate()).format('MMMM D, YYYY, h:mm A')}</TableCell>
               <TableCell>
