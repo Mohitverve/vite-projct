@@ -1,4 +1,3 @@
-// Register.js
 import React, { useState } from 'react';
 import { Button, Card, Typography, Divider, Input, Form, message } from 'antd';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -75,6 +74,18 @@ const Register = () => {
             </Button>
           </Form.Item>
         </Form>
+
+        {/* Already have an account? Log in */}
+        <Text type="secondary" style={{ display: 'block', marginBottom: 10 }}>
+          Already have an account?{' '}
+          <Button
+            type="link"
+            onClick={() => navigate('/login')}
+            style={{ padding: 0, fontWeight: 'bold' }}
+          >
+            Log in
+          </Button>
+        </Text>
       </Card>
     </div>
   );
