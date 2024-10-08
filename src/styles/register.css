@@ -1,0 +1,48 @@
+/* Common styles - styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #0d1117;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px
+  ),
+  linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px; /* Adjust the size for smaller dots */
+}
+
+/* Container Styles for Register and Login */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Card Styles for Register and Login */
+.card {
+  width: 350px;
+  text-align: center;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+/* Logo Style */
+.logo {
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+/* Responsive Card Width */
+@media (max-width: 480px) {
+  .card {
+    width: 90%;
+  }
+}

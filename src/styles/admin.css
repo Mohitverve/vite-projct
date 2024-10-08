@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0d1117;
+  }
+
+.admin-dashboard {
+    background-color: #0d1117;
+    background-image: radial-gradient(circle, #0d1117 1px, transparent 1px);
+    background-size: 20px 20px;
+    font-family: 'Poppins', sans-serif;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+  linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    padding: 20px;
+    min-height: 100vh;
+  }
+  
+  .services-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #a0a0a0;
+    font-family: 'Poppins', sans-serif;
+    margin-right: auto;
+  }
+  
+  .ant-card {
+    transition: transform 0.3s;
+  }
+  
+  .ant-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .ant-table-row:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+  }
+  
+
+  
+  .services-heading {
+    font-size: 3.5rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #8e8e8e, #bfbfbf);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .dashboard-section {
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+  
+ 
+  
+  .ant-table {
+    transition: all 0.3s;
+  }
+  
+  .ant-table:hover {
+    background-color: #f7f7f7;
+  }
+  
